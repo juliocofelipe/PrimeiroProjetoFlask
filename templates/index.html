@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="static/style.css" rel="stylesheet" type="text/css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&display=swap" rel="stylesheet">
+  <title>Bakery Good Bread</title>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <a href="index.html">
+        <img class="logo" src="static/img/logo.png" alt="Logo bakery good bread">
+      </a>
+      <span>Bakery Good Bread</span>
+    </header>
+    <main>
+      <section class="section-form">
+        <form class="form-group">
+          <div>
+            <label for="fproduct">Produto:</label>
+            <input type="text" id="fproduct" name="fproduct" />
+          </div>
+          <div>
+            <label for="fqtd">Quant.:</label>
+            <input type="number" id="fqtd" name="fqtd" />
+          </div>
+          <div>
+            <label for="fprice">Preço:</label>
+            <input type="number" id="fprice" name="fprice" />
+          </div>
+          <div class="add">
+            <button type="submit"><img src="static/img/add.svg"/></button>
+          </div>
+        </form>
+      </section>
+      <section class="section-products">
+        <table cellpadding="0" cellspacing="0">
+          <thead>
+            <tr class="header-table">
+              <th>Código</th>
+              <th class="products">Produto</th>
+              <th>Qtd (UN)</th>
+              <th>Preço</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr >
+              <td>001</td>
+              <td class="products">Pão de Queijo</td>
+              <td>5</td>
+              <td>10</td>
+              <td>
+                <img src="static/img/edit.svg" />
+                <img src="static/img/delete.svg" />
+              </td>
+            </tr>
+            <tr >
+              <td>001</td>
+              <td>Leite</td>
+              <td>1</td>
+              <td>10</td>
+              <td>
+                <img src="static/img/edit.svg" />
+                <img src="static/img/delete.svg" />
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan=3>Total</td>
+              <td colspan=2>20</td>
+            </tr>
+          </tfoot>
+        </table>
+      </section>
+      
+    </main>
+  </div>
+</body>
+</html>
