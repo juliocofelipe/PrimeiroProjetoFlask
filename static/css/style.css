@@ -10,7 +10,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("img/breads.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../images/breads.jpg");
   background-size: cover;
   background-position: bottom;
 }
@@ -82,11 +82,11 @@ button:hover {
 
 .form-group {
   display: grid;
-  grid-template-columns: 300px;
+  grid-template-columns: 300px 1fr 1fr 0.5fr;
   gap: 0.5rem;
 }
 
-.add {
+.add, .save {
     grid-column-start: 4;
     grid-row-start: 1;
     grid-row-end: 2;
