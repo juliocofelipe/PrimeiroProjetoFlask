@@ -22,7 +22,7 @@ class Item(Resource):
     response_object = {}
     
     if ItemModel.find_item(product):
-      return {'message': "Item id {} already exists.".format(product)}, 400
+      return {'message': "Item id {} already exists.".format(item_id)}, 400
     
     db.session.add(ItemModel(product=product, quantity=quantity, price=price))
     db.session.commit()
@@ -50,8 +50,22 @@ class Item(Resource):
     #   return jsonify(data)
     # except Exception as e:
     #     jsonify({"error":"There was an error please contact the administrator"})# Routes
+   # data = Item.parser.parse_args()
+   #  item_found = ItemModel.find_item(item_id)
+   #  if item_found:
+   #    item_found.update_item(**data)
+   #    item_found.save_item()
+   #    return item_found.json(), 200
+   #  item = ItemModel(item_id, **data)
+   #  try:
+   #    item.save_item()
+   #  except:
+   #    return {'message': 'An internal error ocurred while saving the item.'}, 500
+   #  return item.json(), 201
     
-    item_found = ItemModel.get_by_product(product)
+    
+    item_found = ItemModel.get_by_product(product).first()
+    print(item_found.product)
     if item_found:
       item_found.update_item(**data)
       item_found.save_item()
