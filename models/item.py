@@ -22,7 +22,7 @@ class ItemModel(db.Model):
 
   @classmethod
   def get_by_product(cls, product):
-    return cls.get_with_filter(product=product)
+    return cls.query.filter_by(product=product)
 
   def find_item_all(self):
     item = self.json()

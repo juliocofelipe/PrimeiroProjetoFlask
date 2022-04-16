@@ -1,4 +1,4 @@
-from flask_restful import Resource, request
+from flask_restful import Resource, request, reqparse
 from models.item import ItemModel
 from sql_alchemy import db
 
@@ -32,28 +32,36 @@ class Item(Resource):
 
 
   def put(self, product):
-    try:
-      data = request.get_json()
-      print(data)
-      product = ItemModel.query.filter_by(product=product).first()
-      product = ItemModel.query.filter_by(product=product)
-      product.update(data)
-      db.session.commit()
-      return jsonify(data)
-    except Exception as e:
-        jsonify({"error":"There was an error please contact the administrator"})# Routes
-    
-    # item_found = ItemModel.get_by_product(product)
-    # if item_found:
-    #   item_found.update_item(**data)
-    #   item_found.save_item()
-    #   return item_found.json(), 200
-    # item = ItemModel(item_id, **data)
+    # parser = reqparse.RequestParser()
+    # parser.add_argument('product', required=True, help="The field 'Produto', cannot be left blank.")
+    # parser.add_argument('quantity')
+    # parser.add_argument('price')
+
+    # data = parser.parse_args()
+    # print(data)
     # try:
-    #   item.save_item()
-    # except:
-    #   return {'message': 'An internal error ocurred while saving the item.'}, 500
-    # return item.json(), 201
+    data = request.get_json()
+    print(data)
+    #   print(data)
+    #   product = ItemModel.query.filter_by(product=product).first()
+    #   product = ItemModel.query.filter_by(product=product)
+    #   product.update(data)
+    #   db.session.commit()
+    #   return jsonify(data)
+    # except Exception as e:
+    #     jsonify({"error":"There was an error please contact the administrator"})# Routes
+    
+    item_found = ItemModel.get_by_product(product)
+    if item_found:
+      item_found.update_item(**data)
+      item_found.save_item()
+      return item_found.json(), 200
+    item = ItemModel(product, **data)
+    try:
+      item.save_item()
+    except:
+      return {'message': 'An internal error ocurred while saving the item.'}, 500
+    return item.json(), 201
   
   def delete(self, item_id):
     item = ItemModel.find_item(item_id)

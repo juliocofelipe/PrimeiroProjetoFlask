@@ -15,7 +15,7 @@ def create_table():
     db.create_all()
 
 api.add_resource(Items, '/items')
-api.add_resource(Item, '/items')
+api.add_resource(Item, '/items', '/items/<string:product>')
 
 
 if __name__=="__main__":
