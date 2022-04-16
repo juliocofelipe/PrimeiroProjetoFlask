@@ -1,4 +1,4 @@
-from flask_restful import Resource, reqparse
+from flask_restful import Resource, request
 from models.item import ItemModel
 
 class Items(Resource):
@@ -6,10 +6,11 @@ class Items(Resource):
     return {'items': [item.json() for item in ItemModel.query.all()]}
 
 class Item(Resource):
-  parser = reqparse.RequestParser()
-  parser.add_argument('product', required=True, help="The field 'Produto', cannot be left blank.")
-  parser.add_argument('quantity')
-  parser.add_argument('price')
+  post_data = request.get_json()
+  product = post_data.get('product')
+  quantity = post_data.get('quantity')
+  price = post_data.get('price')
+  response_object = {}
 
   def get(self, item_id):
     item = ItemModel.find_item(item_id)
