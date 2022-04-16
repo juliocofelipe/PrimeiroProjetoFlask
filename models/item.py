@@ -8,23 +8,21 @@ class ItemModel(db.Model):
   quantity = db.Column(db.Integer())
   price = db.Column(db.Float(precision=2))
 
-  def __init__(self, item_id, product, quantity , price):
-    self.item_id = item_id
+  def __init__(self, product, quantity , price):
     self.product = product
     self.quantity = quantity
     self.price = price
 
   def json(self):
     return {
-      'item_id': self.item_id,
       'product': self.product,
       'quantity': self.quantity,
       'price': self.price
     }
 
   @classmethod
-  def find_item(cls, item_id):
-    item = cls.query.filter_by(item_id=item_id).first()
+  def find_item(cls, product):
+    item = cls.query.filter_by(product=product).first()
     if item:
       return item
     return None

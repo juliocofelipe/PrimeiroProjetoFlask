@@ -1,11 +1,11 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask
+from flask_cors import CORS
 from flask_restful import Api
 from resources.item import Items, Item
 
 app = Flask(__name__)
-from flask import Flask
+CORS(app)
 
-app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///bakery.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 api = Api(app)
@@ -15,7 +15,7 @@ def create_table():
     db.create_all()
 
 api.add_resource(Items, '/items')
-api.add_resource(Item, '/items/<int:item_id>')
+api.add_resource(Item, '/items')
 
 if __name__=="__main__":
   from sql_alchemy import db
