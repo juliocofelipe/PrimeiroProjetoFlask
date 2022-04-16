@@ -29,27 +29,31 @@ class Item(Resource):
 
     response_object['message'] = f'{product} was added!'
     return response_object, 201  
-    # item = ItemModel(product=product, quantity=quantity, price=price)
+
+
+  def put(self, product):
+    try:
+      data = request.get_json()
+      print(data)
+      product = ItemModel.query.filter_by(product=product).first()
+      product = ItemModel.query.filter_by(product=product)
+      product.update(data)
+      db.session.commit()
+      return jsonify(data)
+    except Exception as e:
+        jsonify({"error":"There was an error please contact the administrator"})# Routes
     
+    # item_found = ItemModel.get_by_product(product)
+    # if item_found:
+    #   item_found.update_item(**data)
+    #   item_found.save_item()
+    #   return item_found.json(), 200
+    # item = ItemModel(item_id, **data)
     # try:
     #   item.save_item()
     # except:
-    #   return {'message': 'An internal occurred while saving the item.'}, 500
-    # return item.json()
-
-  def put(self, item_id):
-    data = Item.parser.parse_args()
-    item_found = ItemModel.find_item(item_id)
-    if item_found:
-      item_found.update_item(**data)
-      item_found.save_item()
-      return item_found.json(), 200
-    item = ItemModel(item_id, **data)
-    try:
-      item.save_item()
-    except:
-      return {'message': 'An internal error ocurred while saving the item.'}, 500
-    return item.json(), 201
+    #   return {'message': 'An internal error ocurred while saving the item.'}, 500
+    # return item.json(), 201
   
   def delete(self, item_id):
     item = ItemModel.find_item(item_id)

@@ -21,11 +21,8 @@ class ItemModel(db.Model):
     }
 
   @classmethod
-  def find_item(cls, product):
-    item = cls.query.filter_by(product=product).first()
-    if item:
-      return item
-    return None
+  def get_by_product(cls, product):
+    return cls.get_with_filter(product=product)
 
   def find_item_all(self):
     item = self.json()
