@@ -17,7 +17,6 @@ def create_table():
 api.add_resource(Items, '/items')
 api.add_resource(Item, '/items', '/items/<string:product>')
 
-
 if __name__=="__main__":
   from sql_alchemy import db
   db.init_app(app)
